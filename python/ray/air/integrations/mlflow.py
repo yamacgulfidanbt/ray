@@ -66,6 +66,7 @@ class MLflowLoggerCallback(LoggerCallback):
         experiment_name: Optional[str] = None,
         tags: Optional[Dict] = None,
         save_artifact: bool = False,
+        artifact_location: Optional[str] = None
     ):
 
         self.tracking_uri = tracking_uri
@@ -73,7 +74,7 @@ class MLflowLoggerCallback(LoggerCallback):
         self.experiment_name = experiment_name
         self.tags = tags
         self.should_save_artifact = save_artifact
-
+        self.artifact_location = artifact_location
         self.mlflow_util = _MLflowLoggerUtil()
 
         if ray.util.client.ray.is_connected():
@@ -92,6 +93,7 @@ class MLflowLoggerCallback(LoggerCallback):
             tracking_uri=self.tracking_uri,
             registry_uri=self.registry_uri,
             experiment_name=self.experiment_name,
+            artifact_location=self.artifact_location
         )
 
         if self.tags is None:

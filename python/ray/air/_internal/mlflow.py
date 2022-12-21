@@ -37,6 +37,7 @@ class _MLflowLoggerUtil:
 
     def setup_mlflow(
         self,
+        artifact_location:str, 
         tracking_uri: Optional[str] = None,
         registry_uri: Optional[str] = None,
         experiment_id: Optional[str] = None,
@@ -127,7 +128,8 @@ class _MLflowLoggerUtil:
                 "Existing experiment not found. Creating new "
                 f"experiment with name: {experiment_name}"
             )
-            self.experiment_id = self._mlflow.create_experiment(name=experiment_name)
+            self.experiment_id = self._mlflow.create_experiment(name=experiment_name, 
+                                                                artifact_location=artifact_location)
             return
 
         if create_experiment_if_not_exists:

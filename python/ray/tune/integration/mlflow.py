@@ -27,10 +27,11 @@ class MLflowLoggerCallback(_MLflowLoggerCallback):
         experiment_name: Optional[str] = None,
         tags: Optional[Dict] = None,
         save_artifact: bool = False,
+        artifact_location: Optional[str] = None
     ):
         logger.warning(callback_deprecation_message)
         super().__init__(
-            tracking_uri, registry_uri, experiment_name, tags, save_artifact
+            tracking_uri, registry_uri, experiment_name, tags, save_artifact, artifact_location
         )
 
 
